@@ -1,0 +1,125 @@
+CREATE DATABASE IF NOT EXISTS `localhost_badilla` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `localhost_badilla`;
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `high_score` INT(11) DEFAULT 0,
+  `total_score` INT(11) DEFAULT 0,
+  `games_played` INT(11) DEFAULT 0,
+  `last_active` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `user_scores` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `score` INT(11) NOT NULL DEFAULT 0,
+  `accuracy` INT(11) NOT NULL DEFAULT 0,
+  `hints_used` INT(11) NOT NULL DEFAULT 0,
+  `mistakes` INT(11) NOT NULL DEFAULT 0,
+  `best_streak` INT(11) NOT NULL DEFAULT 0,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `admins` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `fullname` VARCHAR(100) NOT NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `system_demos` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL DEFAULT '',
+  `image_path` VARCHAR(255) NOT NULL,
+  `description` TEXT NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `weekly_updates` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `week_number` INT(11) NOT NULL DEFAULT 1,
+  `title` VARCHAR(255) NOT NULL,
+  `date_range` VARCHAR(100) NOT NULL DEFAULT '',
+  `description` TEXT NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE DATABASE IF NOT EXISTS `game_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `game_db`;
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `high_score` INT(11) DEFAULT 0,
+  `total_score` INT(11) DEFAULT 0,
+  `games_played` INT(11) DEFAULT 0,
+  `last_active` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `user_scores` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `score` INT(11) NOT NULL DEFAULT 0,
+  `accuracy` INT(11) NOT NULL DEFAULT 0,
+  `hints_used` INT(11) NOT NULL DEFAULT 0,
+  `mistakes` INT(11) NOT NULL DEFAULT 0,
+  `best_streak` INT(11) NOT NULL DEFAULT 0,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `admins` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `fullname` VARCHAR(100) NOT NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `system_demos` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL DEFAULT '',
+  `image_path` VARCHAR(255) NOT NULL,
+  `description` TEXT NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `weekly_updates` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `week_number` INT(11) NOT NULL DEFAULT 1,
+  `title` VARCHAR(255) NOT NULL,
+  `date_range` VARCHAR(100) NOT NULL DEFAULT '',
+  `description` TEXT NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
